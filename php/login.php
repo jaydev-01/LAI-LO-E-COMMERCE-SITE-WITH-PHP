@@ -14,8 +14,16 @@ $resultInArray = mysqli_fetch_array($result);
 if(empty($resultInArray)){
     echo json_encode(array('success'=>false,'data'=>null, 'message'=>"Unkonwn user!")); 
 }else{
-    
-    $_SESSION['user'] = $resultInArray;
+    if($resultInArray['type'] == 1)
+    {
+        $_SESSION['user'] = $resultInArray;
+    }
+    else
+    {
+        $cookie_name = "user";
+        $cookie_value = $email;
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+    }
     echo json_encode(array('success'=>true,'data'=>$resultInArray, 'message'=>"User login successfully!"));
 }
 

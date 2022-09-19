@@ -47,7 +47,7 @@ $(document).ready(() => {
             if(data.data.type == 1){
                 $(location).attr("href", "/html/admin/dashboard.php");
             }else{
-                $(location).attr("href", "index.php");
+                $(location).attr("href", "/html/customers/home.php");
             }
             
           } else {
