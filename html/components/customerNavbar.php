@@ -12,9 +12,9 @@
     </div>
     <div class="customer-operation">
         <ul>
-            <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
-            <li><a href="../customers/likedProduct.php"><i class="fa-solid fa-heart"></i></a></li>
-            <li><a href="../customers/cart.php"><i class="fa-solid fa-cart-shopping"></i></a></li>
+            <li><a href="#" onclick="logOut()"><i class="fa-solid fa-user"></i></a></li>
+            <li><a href="../customers/likedProduct.php"><i class="fa-solid fa-heart"></i><span class="badge badge-pill badge-info text-dark border rounded-circle px-1 py-1" id="totallike">0</span></a></li>
+            <li><a href="../customers/cart.php"><i class="fa-solid fa-cart-shopping"></i><span class="badge badge-pill badge-info text-dark border rounded-circle px-1 py-1" id="totalCart">0</span></a></li>
         </ul>
     </div>
 </div>

@@ -19,13 +19,13 @@ if (empty($_COOKIE['user'])) {
 </head>
 
 <body>
-    <div class="main-container-customer">
+    <div class="main-container-customer ">
         <div class="header-container">
             <?php include_once "../components/customerNavbar.php" ?>
         </div>
 
         <!-- main content page -->
-        <div class="main-content-container">
+        <div class="main-content-container main-content-container-full">
             <div id="carouselExampleControls" class="carousel slide mb-5" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">

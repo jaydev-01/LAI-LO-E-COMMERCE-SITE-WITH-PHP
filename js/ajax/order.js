@@ -20,7 +20,16 @@ function fetchOrder() {
           tableData += `<td>${orders[key].category}</td>`;
           tableData += `<td>${orders[key].orderDate}</td>`;
           tableData += `<td>${orders[key].deliveryDate}</td>`;
-          tableData += `<td align="center">${orders[key].delivered == 0 ? '<i class="fa-solid fa-clock text-danger"></i>':'<i class="fa-solid fa-badge-check text-success"></i>'}</td>`;
+          tableData += `<td align="center">${orders[key].delivered == 0 ? '<i class="fa-solid fa-clock text-danger"></i>':'<i class="fa-solid fa-badge-check text-success"></i>'}</td>`;  
+          tableData += `<td>${orders[key].customerEmail}</td>`;
+          tableData += `<td>${orders[key].fname}</td>`;
+          tableData += `<td>${orders[key].lname}</td>`;
+          tableData += `<td>${orders[key].address}</td>`;
+          tableData += `<td>${orders[key].city}</td>`;
+          tableData += `<td>${orders[key].state}</td>`;
+          tableData += `<td>${orders[key].country}</td>`;
+          tableData += `<td>${orders[key].phoneno}</td>`;
+          tableData += `<td>${orders[key].totalAmount}</td>`;
           tableData += "</tr>";
         }
         $("#orderData").html(tableData);

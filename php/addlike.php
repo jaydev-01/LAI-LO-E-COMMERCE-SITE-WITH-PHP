@@ -5,17 +5,17 @@ include_once "connection.php";
 $productId = $_POST['productId'];
 $customerId = $_COOKIE['user'];
 
-$query ="SELECT * FROM cart WHERE productId = '" . $productId . "' AND customerid = '" . $customerId . "'";
+$query ="SELECT * FROM likedproduct WHERE productId = '" . $productId . "' AND customerid = '" . $customerId . "'";
 
 $result = mysqli_query($connection, $query);
 $resultInArray = mysqli_fetch_array($result);
 
 if(empty($resultInArray)){
-    $quary = "INSERT INTO `cart`(`productId`, `quantity`, `customerid`) VALUES ('$productId','1','$customerId')";
+    $quary = "INSERT INTO `likedproduct`(`productId`, `quantity`, `customerid`) VALUES ('$productId','1','$customerId')";
     $result = mysqli_query($connection, $quary);
     // var_dump($result);
     if($result){
-        $quary = "SELECT SUM(quantity) AS Qunt FROM cart WHERE customerid = '" . $customerId . "'";
+        $quary = "SELECT SUM(quantity) AS Qunt FROM likedproduct WHERE customerid = '" . $customerId . "'";
         $result = mysqli_query($connection, $quary);
         $resultInArray = mysqli_fetch_array($result);
         // var_dump($resultInArray);
@@ -27,10 +27,10 @@ if(empty($resultInArray)){
 }else{
     $cartId = $resultInArray['id'];
     $quntity =  $resultInArray['quantity'] + 1;
-    $query = "UPDATE `cart` SET `quantity`='$quntity' WHERE id = $cartId";
+    $query = "UPDATE `likedproduct` SET `quantity`='$quntity' WHERE id = $cartId";
     $result = mysqli_query($connection, $query);
     if($result){
-        $quary = "SELECT SUM(quantity) AS Qunt FROM cart WHERE customerid = '" . $customerId . "'";
+        $quary = "SELECT SUM(quantity) AS Qunt FROM likedproduct WHERE customerid = '" . $customerId . "'";
         $result = mysqli_query($connection, $quary);
         $resultInArray = mysqli_fetch_array($result);
         // var_dump($resultInArray);

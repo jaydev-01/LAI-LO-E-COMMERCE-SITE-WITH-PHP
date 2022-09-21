@@ -56,7 +56,7 @@ $(document).ready(()=>{
                         <img src="/php/uploads/${AllproductData[i].productImage}" alt="">
                         <div class="like-addcart d-flex">
                             <button onClick="addToCart(${AllproductData[i].id})"><i class="fa-solid fa-cart-plus"></i></button>
-                            <button onClick="likeProduct(${AllproductData[i].id})"><i class="fa-regular fa-heart"></i></button>
+                            <button onClick="likeProduct(${AllproductData[i].id})" id="${AllproductData[i].id}"><i class="fa-regular fa-heart"></i></button>
                         </div>
                     </div>
                     <div class="product-name-price border-top pt-2">
@@ -87,9 +87,10 @@ $(document).ready(()=>{
             if(data.success == true){
                 let category = data.data;
                 let allcategory = '';
+                allcategory += `<a href="#"  onClick="fetchProductCat(0)">All</a>`;
                 for(let i in category)
                 {
-                    allcategory += `<a href="#" id="${category[i].category}">${category[i].category}</a>`;
+                    allcategory += `<a href="#"  onClick="fetchProductCat(${category[i].id})">${category[i].category}</a>`;
                 }
 
                 $('#cat').html(allcategory);
@@ -99,6 +100,24 @@ $(document).ready(()=>{
                 console.log(data.message);
             }
             
+        }
+    });
+
+    
+
+    $.ajax({
+        type: "post",
+        url: "/php/cartCount.php",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "JSON",
+        data : {customerId : getCookie("user")},
+        success : function(data){
+            if(data.success == true){
+                $('#totalCart').html(data.data);
+            }
+            else{
+                console.log(data.message);
+            }
         }
     });
 
@@ -190,29 +209,133 @@ $(document).ready(()=>{
               });
           }
     });
+
+    Count();
+
 })
 
+function Count(){
+    $.ajax({
+        type : 'POST',
+        url : '/php/CountCartLiked.php',
+        dataType : 'JSON',
+        success : function (data){
+            if(data.success == true){
+                if(data.data == null){
+                    $('#totallike').html("0");
+                    $('#totalCart').html("0");
+                }else{
+                    $('#totallike').html(data.data.liked);
+                    $('#totalCart').html(data.data.cart);
+                }
+            }else{
+                console.log(data.message);
+            }
+        }
+    });
+}
+
 function addToCart(id){
-    let customerId = getCookie("user");
-
-    let cartItem = {
-        productId : id,
-        customerId : customerId,
-    }
-
     $.ajax({
         type : 'POST',
         url : '/php/addcart.php',
-        data : cartItem,
+        data : {productId : id},
         dataType : 'JSON',
         success : function (data){
-
+            if(data.success == true){
+                if(data.data == null){
+                    $('#totalCart').html("0");
+                }else{
+                    $('#totalCart').html(data.data);
+                }
+            }else{
+                console.log(data.message);
+            }
         }
     })
  }
 
- function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
+ function likeProduct(id){
+    $.ajax({
+        type : 'POST',
+        url : '/php/addlike.php',
+        data : {productId : id},
+        dataType : 'JSON',
+        success : function (data){
+            if(data.success == true){
+                if(data.data == null){
+                    $('#totallike').html("0");
+                }else{
+                    $('#totallike').html(data.data);
+                }
+            }else{
+                console.log(data.message);
+            }
+        }
+    })
+ }
+
+ function fetchProductCat(id){
+    $.ajax({
+        type: "post",
+        url: "/php/sortbycat.php",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        dataType: "JSON",
+        data : {category : id},
+        async: true,
+        success:function(data){
+            let AllproductItem = '';
+            if(data.success == true){
+                let AllproductData = data.data;
+                for(let i in AllproductData)
+                {
+                    AllproductItem += `<div class="product-box col-lg-3 mx-4">
+                    <div class="product-image">
+                        <img src="/php/uploads/${AllproductData[i].productImage}" alt="">
+                        <div class="like-addcart d-flex">
+                            <button onClick="addToCart(${AllproductData[i].id})"><i class="fa-solid fa-cart-plus"></i></button>
+                            <button onClick="likeProduct(${AllproductData[i].id})"><i class="fa-regular fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-name-price border-top pt-2">
+                        <h5>${AllproductData[i].Name}</h5>
+                        <p>${AllproductData[i].price}</p>
+                    </div>
+                </div>`;
+                }    
+            }
+            else{
+                AllproductItem += `<div class="product-box  mx-4">    
+                No Product Available
+            </div>`;
+            }
+
+            $('#allProduct').html(AllproductItem);
+            
+        }
+    });
+ }
+
+ function logOut(){
+    // delete_cookie("user");
+    location.reload(true);
+    console.log("logOut");
+    $.ajax({
+        type: "post",
+        url: "/php/Customerlogout.php",
+        dataType: "JSON",
+        async: false,
+        success: function (data) {
+          if (data.success == true) {
+            location.reload(true);
+            $(location).attr("href", "/html/login.php");
+          } else {
+            console.log(data.message);
+          }
+        },
+      });
+ }
+
+ var delete_cookie = function(name) {
+    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+};

@@ -42,7 +42,7 @@ if (empty($_COOKIE['user'])) {
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="cartTableData">
                             <tr>
                                <td  colspan="5"> No Item In Cart</td>                
                             </tr>
@@ -54,10 +54,9 @@ if (empty($_COOKIE['user'])) {
                     <div class="cart__total mx-4">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Total <span id="totalAmount">0</span></li>
                         </ul>
-                        <a href="#" class="btn btn-outline-primary">Proceed to checkout</a>
+                        <a href="../customers/checkout.php" class="btn btn-outline-primary" onclick="order()">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
@@ -68,6 +67,7 @@ if (empty($_COOKIE['user'])) {
         <?php include_once "../components/customerFooter.php"  ?>
 
         <script src="/js/ajax/customerFunctional.js"></script>
+        <script src="/js/ajax/cartliked.js"></script>
     </div>
 </body>
 

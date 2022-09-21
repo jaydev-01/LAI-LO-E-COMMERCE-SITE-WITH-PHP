@@ -39,8 +39,8 @@ if (empty($_COOKIE['user'])) {
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="likedData">
+                            <!-- <tr>
                                 <td> <img src="/images/img_1.webp" alt="" width="50px" height="50px"> </td>
                                 <td>
                                     <div class="pt-2">
@@ -96,7 +96,7 @@ if (empty($_COOKIE['user'])) {
                                 <td>$741</td>
                                 <td> <button class="btn"> <i class="fa-solid fa-trash"></i></button> </td>
                                 <td> <button class="btn"> <i class="fa-sharp fa-solid fa-cart-plus"></i></button> </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -107,6 +107,9 @@ if (empty($_COOKIE['user'])) {
         <!-- footer -->
         <?php include_once "../components/customerFooter.php"  ?>
     </div>
+
+    <script src="/js/ajax/customerFunctional.js"></script>
+    <script src="/js/ajax/cartliked.js"></script>
 </body>
 
 </html>

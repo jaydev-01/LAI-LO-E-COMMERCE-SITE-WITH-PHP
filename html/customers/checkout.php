@@ -49,7 +49,7 @@ if (empty($_COOKIE['user'])) {
                     </div>
                     <div class="form-group p-3">
                         <label for="floatingPassword">Address</label>
-                        <textarea class="form-control" id="msg" rows="3"></textarea>
+                        <textarea class="form-control" id="address" rows="3"></textarea>
                     </div>
                     <div class="form-group p-3">
                         <label class="py-2">City</label>
@@ -72,7 +72,7 @@ if (empty($_COOKIE['user'])) {
                         <input type="text" class="form-control" id="email" placeholder="Email">
                     </div>
                     <div class="form-group  p-3">
-                    <button class="btn text-uppercase btn-outline-primary" type="submit" id="register">Order</button>
+                    <button class="btn text-uppercase btn-outline-primary" type="button" id="order">Order</button>
                 </div>
                 </form>
             </div>
@@ -83,6 +83,9 @@ if (empty($_COOKIE['user'])) {
         <!-- footer -->
         <?php include_once "../components/customerFooter.php"  ?>
     </div>
+
+    <script src="/js/ajax/customerFunctional.js"></script>
+    <script src="/js/ajax/customerOrder.js"></script>
 </body>
 
 </html>

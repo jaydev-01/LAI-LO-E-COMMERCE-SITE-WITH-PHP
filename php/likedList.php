@@ -3,7 +3,7 @@ include_once "connection.php";
 
 $customerid = $_COOKIE['user'];
 
-$query ="SELECT c.*,p.Name,p.price,p.productImage FROM cart c,products p  WHERE p.id = c.productId AND customerid = '" . $customerid . "'";
+$query ="SELECT c.*,p.Name,p.price,p.productImage FROM likedproduct c,products p  WHERE p.id = c.productId AND customerid = '" . $customerid . "'";
 
 $result = mysqli_query($connection, $query);
 

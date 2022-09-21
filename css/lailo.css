@@ -34,6 +34,7 @@
   max-height: auto;
   display: flex;
   flex-direction: row;
+  overflow-x: hidden;
   /* position:absolute; */
 }
 
@@ -50,6 +51,10 @@
   display: flex;
   flex-direction: column;
 }
+
+/* .main-content-container-full{
+  width: 100%;
+} */
 
 /* side menu bar start */
 .sidebar {
@@ -400,12 +405,19 @@
   flex-direction: row;
   justify-content: space-between;
   padding-top: 10px;
+  color: #000;
 }
 
 .customer-operation ul a {
   font-size: 20px;
   padding: 0 1rem;
   color: var(--bgColor);
+}
+
+.customer-operation ul a span{
+  position: absolute;
+  top: 10%;
+  /* left: 80%; */
 }
 
 .customer-operation ul a:hover,
@@ -754,6 +766,7 @@ button {
 
 /* for min laptop and tablates */
 @media screen and (max-width: 1024px) {
+  
   .side-menu {
     width: 40%;
   }

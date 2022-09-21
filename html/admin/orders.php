@@ -21,13 +21,13 @@ if (empty($_SESSION['user'])) {
         <div class="side-menu">
             <?php include_once "../components/sideMenu.php"; ?>
         </div>
-        <div class="main-content-container">
+        <div class="main-content-container" style="width: 97.5%;">
             <?php include_once "../components/adminNavbar.php"; ?>
             <div class="row mx-5 mt-5 title">
                 <h3>Orders</h3>
             </div>
             <div class="main-page-content">
-                <div class="table-card">
+                <div class="table-card ">
                     <table class="table table-hover" id="orderTable">
                         <thead>
                             <tr role="row">
@@ -41,6 +41,15 @@ if (empty($_SESSION['user'])) {
                                 <th>ORDER DATE</th>
                                 <th>DELIVERY DATE</th>
                                 <th>DELIVERY STATUS</th>
+                                <th>CUSTOMER EMAIL</th>
+                                <th>FIRST NAME</th>
+                                <th>LAST NAME</th>
+                                <th>ADDRESS</th>
+                                <th>CITY</th>
+                                <th>STATE</th>
+                                <th>COUNTRY</th>
+                                <th>PHONE NO</th>
+                                <th>TOTAL AMOUNT</th>
                             </tr>
                         </thead>
                         <tbody id="orderData">

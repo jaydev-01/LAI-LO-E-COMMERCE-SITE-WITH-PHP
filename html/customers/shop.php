@@ -34,7 +34,7 @@ if (empty($_COOKIE['user'])) {
             </div>
 
             <div class="col category-item">
-                <div class="row p-5 d-flex justify-content-between" id="allProduct">
+                <div class="row p-5 d-flex" id="allProduct">
                     <div class="product-box  mx-4">
                         No Product Available
                     </div>

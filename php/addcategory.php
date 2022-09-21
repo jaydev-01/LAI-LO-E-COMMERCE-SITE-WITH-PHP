@@ -1,7 +1,7 @@
 <?php
 
 include_once "connection.php";
-
+  
 $category = $_POST['category'];
 
 $query ="INSERT INTO categories (category) VALUES ('$category')";
