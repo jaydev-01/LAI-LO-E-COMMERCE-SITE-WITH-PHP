@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lai Lo | Login</title>
+    <title>Lai Lo | Registration</title>
     <?php include_once "./components/head.php"; ?>
 </head>
 
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="d-grid">
-                    <button class="btn text-uppercase btn-primary" id="register">Register</button>
+                    <button class="btn text-uppercase btn-primary" id="register" type="button">Register</button>
                 </div>
                 <div class="d-flex p-3 justify-content-center">
                     Do you have account?<a href="login.php"><span> Login here</span></a>

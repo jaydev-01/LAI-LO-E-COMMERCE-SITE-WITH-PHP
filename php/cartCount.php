@@ -2,7 +2,7 @@
 
 include_once "connection.php";
 
-$customerId = $_POST['customerId'];
+$customerId = $_COOKIE['user'];
 
 $quary = "SELECT SUM(quantity) AS Qunt FROM cart WHERE customerid = '" . $customerId . "'";
 $result = mysqli_query($connection, $quary);

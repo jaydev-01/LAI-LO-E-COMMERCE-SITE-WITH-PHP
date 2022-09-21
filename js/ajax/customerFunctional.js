@@ -110,7 +110,6 @@ $(document).ready(()=>{
         url: "/php/cartCount.php",
         contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         dataType: "JSON",
-        data : {customerId : getCookie("user")},
         success : function(data){
             if(data.success == true){
                 $('#totalCart').html(data.data);
@@ -121,7 +120,7 @@ $(document).ready(()=>{
         }
     });
 
-    $('#register').click((e)=>{
+    $('#register').on("click",(e)=>{
           e.preventDefault();
 
           let name = $('#name').val();
